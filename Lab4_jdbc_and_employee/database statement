@@ -1,0 +1,8 @@
+mysql> CREATE TABLE employee(
+    -> id INT NOT NULL AUTO_INCREMENT,
+    -> name VARCHAR(100) NOT NULL,
+    -> surname VARCHAR(100) NOT NULL,
+    -> start_year VARCHAR(10) NOT NULL,
+    -> dob VARCHAR(10) NOT NULL,
+    -> PRIMARY KEY (id)
+    -> );
