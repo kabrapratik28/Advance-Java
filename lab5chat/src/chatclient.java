@@ -16,12 +16,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class chatclient {
+public class chatclient extends Thread{
 
 	/**
 	 * @param args
 	 */
-
+	static chatclient chc1 ; 
 	JButton OK;
 	JLabel host, port;
 	JFrame frame_client_start;
@@ -118,6 +118,8 @@ public class chatclient {
 			bufferedReader = new BufferedReader(new InputStreamReader(
 					clientSocket.getInputStream()));
 			outputStream = clientSocket.getOutputStream();
+			/**** Now launch listing thread  ****/
+			chc1.start() ;    // start listening now 
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Client connection problem");
@@ -163,10 +165,8 @@ public class chatclient {
 
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		chatclient chc1 = new chatclient();
-		chc1.Start_client();
+	public void run()
+	{
 		while (true) {
 			try {
 				
@@ -180,8 +180,19 @@ public class chatclient {
 				System.out.println("Buffered reader problem in client reading");
 			}
 
-		}
-		
 	}
+	
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	    chc1 = new chatclient();
+		chc1.Start_client();
 
+	}
 }
+
+
+
+
+
